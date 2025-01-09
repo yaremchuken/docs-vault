@@ -1,4 +1,8 @@
-# docs-vault
+<div align="center">
+  <img src="design/landing_preview.jpeg"/>
+</div>
+
+# Docs Vault
 
 ## About The Project
 :star: Storage for all that document numbers, codes, passwords that you need from time to time.
