@@ -1,13 +1,10 @@
 package exp.yaremchuken.account_service.repository.model
 
-import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.OneToOne
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.Instant
@@ -23,14 +20,6 @@ data class Account(
 
     @Column
     val username: String? = null,
-
-    // @OneToOne(cascade = [CascadeType.ALL])
-    // @JoinColumn(name = "account_credentials_id", referencedColumnName = "account_id")
-    // val credentials: AccountCredentials,
-    //
-    // @OneToOne(cascade = [CascadeType.ALL])
-    // @JoinColumn(name = "account_settings_id", referencedColumnName = "account_id")
-    // val settings: AccountSettings,
 
     @field:CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
