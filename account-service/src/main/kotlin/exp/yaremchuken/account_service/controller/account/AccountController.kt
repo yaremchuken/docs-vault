@@ -2,8 +2,7 @@ package exp.yaremchuken.account_service.controller.account
 
 import exp.yaremchuken.account_service.controller.account.dto.CreateAccountPayload
 import exp.yaremchuken.account_service.controller.account.dto.GetAccountResponse
-import exp.yaremchuken.account_service.entity.Account
-import exp.yaremchuken.account_service.repository.AccountRepository
+import exp.yaremchuken.account_service.service.AccountService
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -18,44 +17,44 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("account")
 class AccountController(
-    val accountRepository: AccountRepository
+    val accountService: AccountService
 ) {
 
     @GetMapping
     fun getAccount(@RequestParam id: Int, request: HttpServletRequest): ResponseEntity<GetAccountResponse> {
-        val acc = accountRepository
-            .findById(id)
-            .map {
+        try {
+            val acc = accountService.getAccount(id)
+            return ResponseEntity.ok(
                 GetAccountResponse(
-                    id = it.id,
-                    email = it.email,
-                    username = it.username
+                    id = acc.account.id,
+                    email = acc.account.email,
+                    username = acc.account.username,
+                    locale = acc.settings.locale
                 )
-            }
-            .orElseThrow {
-                NoSuchElementException("account.404.title")
-            }
-
-        return ResponseEntity.ok(acc)
+            )
+        } catch (ex: NoSuchElementException) {
+            throw NoSuchElementException("account.404.title")
+        }
     }
 
     @PostMapping("create")
     fun createAccount(@Valid @RequestBody payload: CreateAccountPayload): ResponseEntity<GetAccountResponse> {
-        val acc = accountRepository.save(
-            Account(
-                username = payload.username,
-                password = payload.password,
-                email = payload.email
-            )
+        val acc = accountService
+            .addAccount(
+                payload.email,
+                payload.password,
+                payload.username,
+                payload.locale
         )
 
         return ResponseEntity
             .status(HttpStatus.CREATED)
             .body(
                 GetAccountResponse(
-                    id = acc.id,
-                    email = acc.email,
-                    username = acc.username
+                    id = acc.account.id,
+                    email = acc.account.email,
+                    username = acc.account.username,
+                    locale = acc.settings.locale
                 )
             )
     }
