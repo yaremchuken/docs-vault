@@ -2,7 +2,8 @@ package exp.yaremchuken.account_service.controller.account
 
 import exp.yaremchuken.account_service.controller.account.dto.CreateAccountPayload
 import exp.yaremchuken.account_service.controller.account.dto.GetAccountResponse
-import exp.yaremchuken.account_service.service.AccountService
+import exp.yaremchuken.account_service.controller.account.mapper.AccountMapper
+import exp.yaremchuken.account_service.service.impl.DefaultAccountService
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -17,21 +18,15 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("account")
 class AccountController(
-    val accountService: AccountService
+    val accountService: DefaultAccountService,
+    val accountMapper: AccountMapper
 ) {
 
     @GetMapping
     fun getAccount(@RequestParam id: Int, request: HttpServletRequest): ResponseEntity<GetAccountResponse> {
         try {
             val acc = accountService.getAccount(id)
-            return ResponseEntity.ok(
-                GetAccountResponse(
-                    id = acc.account.id,
-                    email = acc.account.email,
-                    username = acc.account.username,
-                    locale = acc.settings.locale
-                )
-            )
+            return ResponseEntity.ok(accountMapper.toGetAccountResponse(acc))
         } catch (ex: NoSuchElementException) {
             throw NoSuchElementException("account.404.title")
         }
@@ -45,17 +40,10 @@ class AccountController(
                 payload.password,
                 payload.username,
                 payload.locale
-        )
+            )
 
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(
-                GetAccountResponse(
-                    id = acc.account.id,
-                    email = acc.account.email,
-                    username = acc.account.username,
-                    locale = acc.settings.locale
-                )
-            )
+            .body(accountMapper.toGetAccountResponse(acc))
     }
 }
