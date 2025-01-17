@@ -18,5 +18,5 @@ data class CreateAccountPayload(
     @field:Size(message = "{account.create.restriction.username_size}", min = 3, max = 50)
     val username: String?,
 
-    val locale: Locale = Locale.ENGLISH
+    val locale: String = Locale.ENGLISH.toString()
 )

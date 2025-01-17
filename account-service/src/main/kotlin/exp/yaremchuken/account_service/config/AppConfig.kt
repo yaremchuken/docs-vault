@@ -9,5 +9,8 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver
 class AppConfig {
 
     @Bean
-    fun localeResolver(): LocaleResolver = SessionLocaleResolver()
+    fun sessionLocaleResolver(): LocaleResolver = SessionLocaleResolver()
+
+    @Bean
+    fun localeResolver(): LocaleResolver = DBLocaleResolver(sessionLocaleResolver())
 }

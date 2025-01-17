@@ -25,8 +25,14 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.3")
+
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+	implementation("com.google.guava:guava:33.4.0-jre")
+
 
 	// MapStruct
 	implementation("org.mapstruct:mapstruct:1.6.3")
