@@ -11,6 +11,7 @@ interface AccountMapper {
     @Mapping(target = "id", source = "account.id")
     @Mapping(target = "email", source = "account.email")
     @Mapping(target = "username", source = "account.username")
+    @Mapping(target = "confirmed", source = "account.confirmed")
     @Mapping(target = "locale", source = "settings.locale")
     fun toGetAccountResponse(account: AccountWithSettings): GetAccountResponse
 }

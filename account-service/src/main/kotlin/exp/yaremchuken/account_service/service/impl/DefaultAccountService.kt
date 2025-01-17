@@ -46,4 +46,11 @@ class DefaultAccountService(
 
         return AccountWithSettings(acc, settings)
     }
+
+    @Transactional
+    override fun deleteAccount(id: Int) {
+        accountCredentialsRepository.deleteById(id)
+        accountSettingsRepository.deleteById(id)
+        accountRepository.deleteById(id)
+    }
 }

@@ -21,6 +21,9 @@ data class Account(
     @Column
     val username: String? = null,
 
+    @Column(nullable = false)
+    val confirmed: Boolean = false,
+
     @field:CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     val createdAt: Instant = Instant.now(),
