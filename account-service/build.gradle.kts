@@ -33,7 +33,6 @@ dependencies {
 
 	implementation("com.google.guava:guava:33.4.0-jre")
 
-
 	// MapStruct
 	implementation("org.mapstruct:mapstruct:1.6.3")
 	kapt("org.mapstruct:mapstruct-processor:1.6.3")

@@ -5,9 +5,15 @@ import exp.yaremchuken.account_service.controller.account.dto.GetAccountResponse
 import exp.yaremchuken.account_service.controller.account.mapper.AccountMapper
 import exp.yaremchuken.account_service.controller.exception.ElementAlreadyExistsException
 import exp.yaremchuken.account_service.service.impl.DefaultAccountService
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.media.Content
+import io.swagger.v3.oas.annotations.media.Schema
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.responses.ApiResponses
 import jakarta.validation.Valid
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.HttpStatus
+import org.springframework.http.ProblemDetail
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -27,6 +33,20 @@ class AccountController(
     val accountMapper: AccountMapper
 ) {
 
+    @Operation(
+        summary = "Get Account by identifier"
+    )
+    @ApiResponses(
+        ApiResponse(
+            responseCode = "200",
+            description = "Account fetched successfully"
+        ),
+        ApiResponse(
+            responseCode = "404",
+            description = "Account with such identifier doesn't exists",
+            content = [ Content(schema = Schema(implementation = ProblemDetail::class)) ]
+        )
+    )
     @GetMapping("{id:\\d+}")
     fun getAccount(@PathVariable id: Int): ResponseEntity<GetAccountResponse> {
         try {
@@ -37,6 +57,20 @@ class AccountController(
         }
     }
 
+    @Operation(
+        summary = "Create Account"
+    )
+    @ApiResponses(
+        ApiResponse(
+            responseCode = "201",
+            description = "Account successfully created"
+        ),
+        ApiResponse(
+            responseCode = "400",
+            description = "Account with such credentials already exists",
+            content = [ Content(schema = Schema(implementation = ProblemDetail::class)) ]
+        )
+    )
     @PostMapping("create")
     fun createAccount(@Valid @RequestBody payload: CreateAccountPayload): ResponseEntity<GetAccountResponse> {
         try {
@@ -56,6 +90,13 @@ class AccountController(
         }
     }
 
+    @Operation(
+        summary = "Delete Account"
+    )
+    @ApiResponse(
+        responseCode = "204",
+        description = "Account successfully deleted or doesn't exists"
+    )
     @DeleteMapping("delete/{id:\\d+}")
     fun deleteAccount(@PathVariable id: Int): ResponseEntity<Void> {
         accountService.deleteAccount(id)
