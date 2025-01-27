@@ -40,7 +40,7 @@ class DefaultAccountService(
         return AccountWithSettings(acc, settings)
     }
 
-    override fun getAccount(id: Int): AccountWithSettings {
+    override fun getAccount(id: Long): AccountWithSettings {
         val acc = accountRepository.findById(id).orElseThrow { NoSuchElementException() }
         val settings = accountSettingsRepository.findById(id).orElseThrow { NoSuchElementException() }
 
@@ -48,7 +48,7 @@ class DefaultAccountService(
     }
 
     @Transactional
-    override fun deleteAccount(id: Int) {
+    override fun deleteAccount(id: Long) {
         accountCredentialsRepository.deleteById(id)
         accountSettingsRepository.deleteById(id)
         accountRepository.deleteById(id)

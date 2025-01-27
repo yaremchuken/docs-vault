@@ -1,0 +1,23 @@
+endpoint:
+  post:
+    tags:
+      - account
+    description: Create account
+    operationId: createAccount
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../model/account.yaml#/CreateAccountRequest'
+    responses:
+      '201':
+        description: Account successfully created
+        content:
+          application/json:
+            schema:
+              $ref: '../model/account.yaml#/GetAccountResponse'
+      '400':
+        $ref: '../../common/schemas.yaml#/CommonClientErrorResponse'
+      '500':
+        $ref: '../../common/schemas.yaml#/CommonServerErrorResponse'

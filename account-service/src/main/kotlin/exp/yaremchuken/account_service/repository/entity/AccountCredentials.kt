@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 data class AccountCredentials(
     @Id
     @Column(name = "account_id", nullable = false, unique = true)
-    val accountId: Int = 0,
+    val accountId: Long = 0,
 
     @Column(nullable = false)
     val password: String,

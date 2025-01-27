@@ -1,0 +1,60 @@
+CreateAccountRequest:
+  type: object
+  description: 'Data package for creating an account with login details'
+  properties:
+    email:
+      description: 'Account e-mail written in the standard form, unique for every account'
+      example: 'person@gmail.com'
+      type: string
+      format: email
+      x-field-extra-annotation: "@jakarta.validation.constraints.NotEmpty(message = \"{account.create.restriction.email_is_empty}\")
+                                 @jakarta.validation.constraints.Email(message = \"{account.create.restriction.email_is_invalid}\")"
+    password:
+      description: 'Account password'
+      type: string
+      x-field-extra-annotation: "@jakarta.validation.constraints.NotEmpty(message = \"{account.create.restriction.password_is_empty}\")
+                                 @jakarta.validation.constraints.Size(message = \"{account.create.restriction.password_size}\", min = 3, max = 16)"
+    username:
+      description: 'Account username, not unique'
+      example: 'person'
+      type: string
+      x-field-extra-annotation: "@jakarta.validation.constraints.Size(message = \"{account.create.restriction.username_size}\", min = 3, max = 50)"
+    locale:
+      description: 'Language preferred by Account, short form'
+      example: 'en'
+      type: string
+  required:
+    - email
+    - password
+    - locale
+
+GetAccountResponse:
+  type: object
+  description: 'Account details'
+  properties:
+    id:
+      description: 'Account unique identifier'
+      example: 123
+      type: integer
+      format: int64
+    email:
+      description: 'Account e-mail written in the standard form, unique for every account'
+      example: 'person@gmail.com'
+      type: string
+    username:
+      description: 'Account username, not unique'
+      example: 'person'
+      type: string
+    confirmed:
+      description: 'Is account email confirmed by its creator'
+      example: true
+      type: boolean
+    locale:
+      description: 'Language preferred by Account, short form'
+      example: 'en'
+      type: string
+  required:
+    - id
+    - email
+    - confirmed
+    - locale

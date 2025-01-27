@@ -1,6 +1,6 @@
 package exp.yaremchuken.account_service.controller.account.mapper
 
-import exp.yaremchuken.account_service.controller.account.dto.GetAccountResponse
+import exp.yaremchuken.account_service.openapi.model.GetAccountResponse
 import exp.yaremchuken.account_service.service.model.AccountWithSettings
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping

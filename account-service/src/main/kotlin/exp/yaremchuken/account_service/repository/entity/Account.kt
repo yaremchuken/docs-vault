@@ -13,7 +13,7 @@ import java.time.Instant
 data class Account(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Int = 0,
+    val id: Long = 0,
 
     @Column(nullable = false, unique = true)
     val email: String,

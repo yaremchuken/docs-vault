@@ -1,0 +1,16 @@
+openapi: 3.0.3
+servers:
+  - url: http://localhost:8081
+
+info:
+  title: Accounts Control Center
+  description: Accounts microservice REST API
+  version: 1.0
+
+paths:
+  /v1/account/get/{accountId}:
+    $ref: 'services/api/get-account.yaml#/endpoint'
+  /v1/account/create:
+    $ref: 'services/api/create-account.yaml#/endpoint'
+  /v1/account/delete/{accountId}:
+    $ref: 'services/api/delete-account.yaml#/endpoint'

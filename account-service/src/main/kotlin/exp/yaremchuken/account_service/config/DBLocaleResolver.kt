@@ -21,18 +21,18 @@ class DBLocaleResolver(
     @Autowired
     lateinit var accountSettingsRepository: AccountSettingsRepository
 
-    private val cache: LoadingCache<Int, Locale> =
+    private val cache: LoadingCache<Long, Locale> =
         CacheBuilder.newBuilder()
             .expireAfterWrite(5, TimeUnit.MINUTES)
             .build(
-                object : CacheLoader<Int, Locale>() {
-                    override fun load(key: Int) =
+                object : CacheLoader<Long, Locale>() {
+                    override fun load(key: Long) =
                         accountSettingsRepository.findById(key).map { it.locale }.orElse(Locale.ENGLISH)
                 }
             )
 
     override fun resolveLocale(request: HttpServletRequest): Locale {
-        val accountId = request.getHeader("X_ACCOUNT_ID")?.toInt()
+        val accountId = request.getHeader("X_ACCOUNT_ID")?.toLong()
 
         return if (accountId == null) {
             return sessionLocaleResolver.resolveLocale(request)

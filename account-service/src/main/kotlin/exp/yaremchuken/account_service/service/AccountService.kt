@@ -7,7 +7,7 @@ interface AccountService {
 
     fun addAccount(email: String, password: String, username: String?, locale: Locale): AccountWithSettings
 
-    fun getAccount(id: Int): AccountWithSettings
+    fun getAccount(id: Long): AccountWithSettings
 
-    fun deleteAccount(id: Int)
+    fun deleteAccount(id: Long)
 }

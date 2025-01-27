@@ -11,7 +11,7 @@ import java.util.Locale
 data class AccountSettings(
     @Id
     @Column(name = "account_id", nullable = false, unique = true)
-    val accountId: Int = 0,
+    val accountId: Long = 0,
 
     @Column(nullable = false)
     val locale: Locale
