@@ -27,7 +27,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 
-	// implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.3")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.3")
 
 	implementation("org.openapitools:openapi-generator-gradle-plugin:7.10.0")
 
@@ -35,7 +35,6 @@ dependencies {
 	implementation("io.swagger.core.v3:swagger-annotations:2.2.28")
 	implementation("jakarta.validation:jakarta.validation-api")
 	implementation("org.openapitools:jackson-databind-nullable:0.2.6")
-
 
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
