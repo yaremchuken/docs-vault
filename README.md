@@ -15,6 +15,6 @@
 
 ### Backend
 - **account-service** - Service for user (and admin) accounts information. Stores user data, credentials etc.
-- **vault-service** - Service that responsible for store data, relationships between doc types and hashes. Contains REST-controllers for CRUD operations over quizzes.
+- **vault-service** - Service that responsible for store data, relationships between doc types and hashes.
 - **i18n-service** - Service for internalization. Stores translations into different languages.
 - **media-service** - Service, designed for working with media files for exercises, such as video previews and instructions. Stores media files with S3 object storage.
