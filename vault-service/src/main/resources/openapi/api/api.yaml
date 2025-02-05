@@ -1,0 +1,26 @@
+openapi: 3.0.3
+
+info:
+  title: Secrets Control Center
+  description: Secrets microservice REST API
+  version: 1.0
+
+servers:
+  - url: http://localhost:8082
+
+paths:
+  /v1/secret-group/list/{accountId}:
+    $ref: 'services/api/secret-group/list-groups.yaml#/endpoint'
+  /v1/secret-group/create/{accountId}:
+    $ref: 'services/api/secret-group/create-group.yaml#/endpoint'
+
+  /v1/secret/group/{accountId}/{groupId}:
+    $ref: 'services/api/secret/list-group.yaml#/endpoint'
+  /v1/secret/create/{accountId}:
+    $ref: 'services/api/secret/create-secret.yaml#/endpoint'
+  /v1/secret/get/{accountId}/{secretId}:
+    $ref: 'services/api/secret/get-secret.yaml#/endpoint'
+  /v1/secret/history/{accountId}/{secretId}:
+    $ref: 'services/api/secret/get-history.yaml#/endpoint'
+  /v1/secret/renew/{accountId}/{secretId}:
+    $ref: 'services/api/secret/renew-secret.yaml#/endpoint'

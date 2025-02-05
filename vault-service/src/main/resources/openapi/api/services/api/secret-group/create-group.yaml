@@ -1,0 +1,23 @@
+endpoint:
+  post:
+    tags:
+      - secret-group
+    description: 'Create empty group of secrets'
+    operationId: createGroup
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../../model/secret-group.yaml#/CreateGroupRequest'
+    responses:
+      '201':
+        description: 'Group successfully created'
+        content:
+          application/json:
+            schema:
+              $ref: '../../model/secret-group.yaml#/SecretGroupInfo'
+      '400':
+        $ref: '../../../common/schemas.yaml#/CommonClientErrorResponse'
+      '500':
+        $ref: '../../../common/schemas.yaml#/CommonServerErrorResponse'

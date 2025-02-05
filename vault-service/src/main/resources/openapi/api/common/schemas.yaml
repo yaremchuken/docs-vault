@@ -1,0 +1,28 @@
+CommonClientErrorResponse:
+  description: 'The general format of the client error'
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: '#/ApiError'
+
+CommonServerErrorResponse:
+  description: 'The general format of the server error'
+  content:
+    application/json:
+      schema:
+        type: array
+        items:
+          $ref: '#/ApiError'
+
+ApiError:
+  type: object
+  properties:
+    message:
+      type: string
+      description: 'Error description'
+    details:
+      type: object
+      description: 'Additional details of the error'
+      additionalProperties: { }

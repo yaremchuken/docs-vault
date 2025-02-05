@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS secret_group (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    account_id BIGINT,
+    title VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS secret (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    group_id BIGINT,
+    CONSTRAINT secret_group_fk FOREIGN KEY (group_id) REFERENCES secret_group(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS secret_version (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    secret_id BIGINT,
+    CONSTRAINT secret_version_fk FOREIGN KEY (secret_id) REFERENCES secret(id),
+    title VARCHAR(255),
+    sec_value VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
