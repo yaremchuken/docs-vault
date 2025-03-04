@@ -31,7 +31,4 @@ data class Account(
     @field:UpdateTimestamp
     @Column(name = "updated_at", insertable = false)
     val updatedAt: Instant = Instant.now(),
-
-    @Column(name = "deleted_at")
-    val deletedAt: Instant? = null
 )
