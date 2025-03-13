@@ -9,9 +9,9 @@ servers:
   - url: http://localhost:8081
 
 paths:
-  /v1/account/get/{accountId}:
+  /v1/account/get:
     $ref: 'services/api/get-account.yaml#/endpoint'
   /v1/account/create:
     $ref: 'services/api/create-account.yaml#/endpoint'
-  /v1/account/delete/{accountId}:
+  /v1/account/delete:
     $ref: 'services/api/delete-account.yaml#/endpoint'

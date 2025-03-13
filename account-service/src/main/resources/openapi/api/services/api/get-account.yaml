@@ -5,7 +5,7 @@ endpoint:
     description: Get account by identifier
     operationId: getAccount
     parameters:
-      - in: path
+      - in: query
         name: accountId
         description: Account unique identifier
         required: true
