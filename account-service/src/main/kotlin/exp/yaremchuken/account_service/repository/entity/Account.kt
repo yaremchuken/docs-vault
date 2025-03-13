@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
-import java.time.Instant
+import java.time.OffsetDateTime
 
 @Entity
 data class Account(
@@ -26,9 +26,9 @@ data class Account(
 
     @field:CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
-    val createdAt: Instant = Instant.now(),
+    val createdAt: OffsetDateTime = OffsetDateTime.now(),
 
     @field:UpdateTimestamp
-    @Column(name = "updated_at", insertable = false)
-    val updatedAt: Instant = Instant.now(),
+    @Column(name = "updated_at", nullable = false)
+    val updatedAt: OffsetDateTime = OffsetDateTime.now(),
 )
