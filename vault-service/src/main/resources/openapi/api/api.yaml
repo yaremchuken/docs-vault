@@ -9,18 +9,18 @@ servers:
   - url: http://localhost:8082
 
 paths:
-  /v1/secret-group/list/{accountId}:
+  /v1/secret-group/list:
     $ref: 'services/api/secret-group/list-groups.yaml#/endpoint'
-  /v1/secret-group/create/{accountId}:
+  /v1/secret-group/create:
     $ref: 'services/api/secret-group/create-group.yaml#/endpoint'
 
-  /v1/secret/group/{accountId}/{groupId}:
-    $ref: 'services/api/secret/list-group.yaml#/endpoint'
-  /v1/secret/create/{accountId}:
+  /v1/secret/create:
     $ref: 'services/api/secret/create-secret.yaml#/endpoint'
-  /v1/secret/get/{accountId}/{secretId}:
-    $ref: 'services/api/secret/get-secret.yaml#/endpoint'
-  /v1/secret/history/{accountId}/{secretId}:
-    $ref: 'services/api/secret/get-history.yaml#/endpoint'
-  /v1/secret/renew/{accountId}/{secretId}:
+  /v1/secret/get-value:
+    $ref: 'services/api/secret/get-secured-value.yaml#/endpoint'
+  /v1/secret/list-in-group:
+    $ref: 'services/api/secret/list-in-group.yaml#/endpoint'
+  /v1/secret/list-versions:
+    $ref: 'services/api/secret/list-versions.yaml#/endpoint'
+  /v1/secret/renew:
     $ref: 'services/api/secret/renew-secret.yaml#/endpoint'

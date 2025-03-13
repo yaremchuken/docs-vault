@@ -4,6 +4,14 @@ endpoint:
       - secret-group
     description: 'Create empty group of secrets'
     operationId: createGroup
+    parameters:
+      - in: query
+        name: accountId
+        description: 'Account unique identifier'
+        required: true
+        schema:
+          type: integer
+          format: int64
     requestBody:
       required: true
       content:
